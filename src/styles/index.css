@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark light;
+  --color-accent-light: #059669;
+  --color-accent-dark: #10b981;
+  --accent-color: var(--color-accent-dark);
+  --scrollbar-thumb: #334155;
+  --scrollbar-track: #0b1120;
+  accent-color: var(--accent-color);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --accent-color: light-dark(var(--color-accent-light), var(--color-accent-dark));
+    --scrollbar-thumb: light-dark(#94a3b8, #334155);
+    --scrollbar-track: light-dark(#f1f5f9, #0b1120);
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+p, blockquote, li, .pretty-text {
+  text-wrap: pretty;
+}
+
+:where(a:any-link, button, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+.scrollable-panel {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
+}
+
+@supports not (scrollbar-color: auto) {
+  .scrollable-panel::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollable-panel::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+  }
+
+  .scrollable-panel::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

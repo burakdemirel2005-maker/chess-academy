@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|stockfish/|favicon\\.svg|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/stockfish/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
